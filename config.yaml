@@ -1,0 +1,39 @@
+# Agentless Go Contributor — runtime configuration.
+#
+# ANTHROPIC_API_KEY is sourced from the environment only; never put it here.
+# CLI flags (e.g. --issue, --repo, --offline) override these defaults.
+
+# Default target repository (must be in repo_allowlist).
+repo: "gin-gonic/gin"
+
+# Approved Go repositories. Anything outside this list is rejected by config validation.
+repo_allowlist:
+  - "gin-gonic/gin"
+  - "spf13/cobra"
+  - "labstack/echo"
+
+# Default issue for the example run: `python -m src.main --issue 4460`.
+issue_number: 4460
+
+# Pinned base commit (parent of the merged fix PR). Leave null to resolve at runtime.
+base_commit: null
+
+# Phase 1 localization breadth: how many top files the LLM is allowed to pick.
+top_n_files: 5
+
+# Use cached/local issue + PR JSON instead of hitting the GitHub API.
+offline: false
+
+# Working directory for clones, caches, and isolated candidate worktrees.
+workdir: ".workdir"
+
+# Where per-phase artifacts, diffs, PR summaries, and run logs are written.
+outputs_dir: "outputs"
+
+# LLM (Anthropic Claude) settings used by src/llm.py.
+llm:
+  model: "claude-sonnet-4-5-20250929"
+  temperature: 0.2
+  sample_count: 4         # n repair candidates generated per run
+  max_retries: 3
+  request_timeout_s: 60

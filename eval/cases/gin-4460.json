@@ -1,0 +1,10 @@
+{
+  "repo": "gin-gonic/gin",
+  "issue_number": 4460,
+  "base_commit": "22c274c84ba5a502ce6453a9d2bb9e05ed91b911",
+  "gold_changed_files": [
+    "response_writer.go"
+  ],
+  "gold_diff": "diff --git a/response_writer.go b/response_writer.go\nindex 6907e51437..9035e6f1fd 100644\n--- a/response_writer.go\n+++ b/response_writer.go\n@@ -128,7 +128,9 @@ func (w *responseWriter) CloseNotify() <-chan bool {\n // Flush implements the http.Flusher interface.\n func (w *responseWriter) Flush() {\n \tw.WriteHeaderNow()\n-\tw.ResponseWriter.(http.Flusher).Flush()\n+\tif f, ok := w.ResponseWriter.(http.Flusher); ok {\n+\t\tf.Flush()\n+\t}\n }\n \n func (w *responseWriter) Pusher() (pusher http.Pusher) {\n",
+  "notes": "Issue #4460 reports that responseWriter.Flush() panics when used with http.TimeoutHandler because the underlying *http.timeoutWriter does not implement http.Flusher. Fixed by merged PR #4479 (merge commit 26c3a628655cad2388380cb8102d6ce7d4875f3b). base_commit is the parent of that merge commit on master. gold_diff is the exact patch from PR #4479."
+}

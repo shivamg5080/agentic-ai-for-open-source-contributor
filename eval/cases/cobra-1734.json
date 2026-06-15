@@ -1,0 +1,10 @@
+{
+  "repo": "spf13/cobra",
+  "issue_number": 1734,
+  "base_commit": "ed7bb9dda481082672ed9ea60c29b3b70ae0fc04",
+  "gold_changed_files": [
+    "bash_completionsV2.go"
+  ],
+  "gold_diff": "diff --git a/bash_completionsV2.go b/bash_completionsV2.go\nindex d295791e6..767bf0312 100644\n--- a/bash_completionsV2.go\n+++ b/bash_completionsV2.go\n@@ -219,7 +219,7 @@ __%[1]s_handle_standard_completion_case() {\n     local tab=$'\\t' comp\n \n     # Short circuit to optimize if we don't have descriptions\n-    if [[ ${completions[*]} != *$tab* ]]; then\n+    if [[ \"${completions[*]}\" != *$tab* ]]; then\n         IFS=$'\\n' read -ra COMPREPLY -d '' < <(compgen -W \"${completions[*]}\" -- \"$cur\")\n         return 0\n     fi\n",
+  "notes": "Issue #1734 reports that tab characters introducing completion descriptions were mishandled with bash v3 in the generated completion script. Fixed by merged PR #1735 (merge commit 7c9831d376a6c048ae9f95b435cdde9dc14358a0). base_commit is the parent of that merge commit on master. gold_diff is the exact patch from PR #1735."
+}

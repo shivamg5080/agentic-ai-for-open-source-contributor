@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "aws-serverless": {
+      "source": "aws/agent-toolkit-for-aws",
+      "sourceType": "github",
+      "skillPath": "skills/core-skills/aws-serverless/SKILL.md",
+      "computedHash": "9b74e4bf97b5a687ff74fe20b560b2a30ed417b0e348a46fb6608af534f9801a"
+    }
+  }
+}

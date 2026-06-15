@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Pipeline artifacts (kept as empty dirs via .gitkeep)
+.workdir/
+outputs/*
+!outputs/.gitkeep
+
+# Editor / OS
+.DS_Store
+.vscode/
+.idea/
+
+# Test / coverage
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/

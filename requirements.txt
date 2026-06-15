@@ -1,0 +1,24 @@
+# Agentless Go Contributor — pinned runtime + test dependencies.
+# Python 3.11+ required.
+
+# LLM client
+anthropic==0.39.0
+# anthropic 0.39.0 passes the `proxies` kwarg that httpx>=0.28 removed; pin below it.
+httpx==0.27.2
+
+# GitHub REST ingestion (with local JSON fallback)
+requests==2.32.3
+PyGithub==2.4.0
+
+# Config parsing
+PyYAML==6.0.2
+
+# .env loading so ANTHROPIC_API_KEY can live in a gitignored file
+python-dotenv==1.0.1
+
+# Diff parsing helper for normalized diffs / patch tooling
+unidiff==0.7.5
+
+# Testing
+pytest==8.3.3
+hypothesis==6.112.1
